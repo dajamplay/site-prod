@@ -1,7 +1,6 @@
 <?php
 
 use App\Middleware\AuthMiddleware;
-use App\Middleware\TestMiddleware;
 use App\Middleware\RouteMiddleware;
 use DI\Container;
 use HttpSoft\Emitter\SapiEmitter;
@@ -14,11 +13,11 @@ use Psr\Http\Message\ResponseInterface;
 /** @var Container $container */
 $container = require __DIR__ . '/../config/dependencies.php';
 
+
 $resolver = new MiddlewareResolver();
 $pipeline = new MiddlewarePipeline();
 
 $pipeline->pipe($resolver->resolve(AuthMiddleware::class), '/admin');
-//$pipeline->pipe($resolver->resolve(TestMiddleware::class));
 $pipeline->pipe($resolver->resolve($container->get(RouteMiddleware::class)));
 $pipeline->pipe($resolver->resolve(function (): ResponseInterface {
     $response = new Response();

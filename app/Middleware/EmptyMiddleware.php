@@ -10,7 +10,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use HttpSoft\Emitter\SapiEmitter;
 
 
-class TestMiddleware implements MiddlewareInterface
+class EmptyMiddleware implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {

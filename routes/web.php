@@ -1,8 +1,9 @@
 <?php
 
-use FastRoute\RouteCollector;
+/**
+ * Routing
+ * @var FastRoute\RouteCollector $router
+ */
 
-return function (RouteCollector $r) {
-    $r->get('/', ['App\Controllers\HomeController', 'index']);
-    $r->get('/admin', ['App\Controllers\HomeController', 'admin']);
-};
+$router->get('/', ['App\Controllers\HomeController', 'index']);
+$router->get('/admin', ['App\Controllers\HomeController', 'admin']);
