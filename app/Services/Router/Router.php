@@ -8,9 +8,9 @@ class Router implements RouterInterface
 {
     private string $httpMethod;
     private string $uri;
-    private Dispatcher $dispatcher;
+    private FastRouteDispatcher $dispatcher;
 
-    public function __construct(Dispatcher $dispatcher)
+    public function __construct(FastRouteDispatcher $dispatcher)
     {
         $this->dispatcher = $dispatcher;
     }
@@ -29,6 +29,6 @@ class Router implements RouterInterface
 
     public function isFoundRoute(Route $route): bool
     {
-        return $route->getStatus() === Dispatcher::FOUND;
+        return $this->dispatcher->isFoundRoute($route);
     }
 }

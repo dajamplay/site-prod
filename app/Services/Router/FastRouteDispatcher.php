@@ -22,4 +22,9 @@ class FastRouteDispatcher implements Dispatcher
 
         return $dispatcher->dispatch($httpMethod, $uri);
     }
+
+    public function isFoundRoute(Route $route): bool
+    {
+        return $route->getStatus() === Dispatcher::FOUND;
+    }
 }

@@ -12,6 +12,7 @@ class AuthMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $response = $handler->handle($request);
+        $response = $response->withHeader('X-AuthMiddleware', 'access');
         return $response;
     }
 }
