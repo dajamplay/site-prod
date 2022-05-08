@@ -8,17 +8,17 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class Route
 {
-    private array $parameters;
-    private string $class;
-    private string $method;
+    private array|null $parameters;
+    private string|null $class;
+    private string|null $method;
     private int $status;
 
     public function __construct($route)
     {
         $this->status = $route[0];
-        $this->parameters = $route[2];
-        $this->class = $route[1][0];
-        $this->method = $route[1][1];
+        $this->parameters = $route[2] ?? null;
+        $this->class = $route[1][0] ?? null;
+        $this->method = $route[1][1] ?? null;
     }
 
     public function getResponseAction(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
