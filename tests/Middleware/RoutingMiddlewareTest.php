@@ -7,7 +7,7 @@ use Laminas\Diactoros\ServerRequestFactory;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class RouteMiddlewareTest extends TestCase
+class RoutingMiddlewareTest extends TestCase
 {
     public function test404()
     {
@@ -22,5 +22,20 @@ class RouteMiddlewareTest extends TestCase
 
         self::assertEquals(404, $response->getStatusCode());
         self::assertEquals('Not Found', $response->getReasonPhrase());
+    }
+
+    public function test200()
+    {
+        $handler = $this->getMockBuilder(RequestHandlerInterface::class)
+            ->getMock();
+
+        $request = new ServerRequestFactory();
+        $request = $request->createServerRequest('GET', '/');
+
+        $routeMiddleware = new RouteMiddleware();
+
+        $response = $routeMiddleware->process($request, $handler);
+
+        self::assertEquals(200, $response->getStatusCode());
     }
 }
