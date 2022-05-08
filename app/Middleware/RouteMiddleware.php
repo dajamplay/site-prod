@@ -27,13 +27,9 @@ class RouteMiddleware implements MiddlewareInterface
 
         $route = $this->router->withRoute($httpMethod, $uri)->dispatch();
 
-        if ($this->router->isFoundRoute($route)) {
-
-            $parameters = $route[2];
-            $class = $route[1][0];
-            $method = $route[1][1];
-
-            return (new $class($request, $handler))->$method($parameters);
+        if ($this->router->isFoundRoute($route))
+        {
+            return $route->getResponseAction($request, $handler);
         }
 
         return (new Response())->withStatus(404, 'Not Found');

@@ -22,13 +22,13 @@ class Router implements RouterInterface
         return $this;
     }
 
-    public function dispatch(): array
+    public function dispatch(): Route
     {
-        return $this->dispatcher->dispatch($this->httpMethod, $this->uri);
+        return new Route($this->dispatcher->dispatch($this->httpMethod, $this->uri));
     }
 
-    public function isFoundRoute($route): bool
+    public function isFoundRoute(Route $route): bool
     {
-        return $route[0] === Dispatcher::FOUND;
+        return $route->getStatus() === Dispatcher::FOUND;
     }
 }
