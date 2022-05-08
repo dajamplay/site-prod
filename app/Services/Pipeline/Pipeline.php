@@ -34,6 +34,4 @@ class Pipeline
     {
         return $this->pipeline;
     }
-
-
 }

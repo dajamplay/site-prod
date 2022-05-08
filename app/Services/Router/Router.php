@@ -2,8 +2,6 @@
 
 namespace App\Services\Router;
 
-use FastRoute\Dispatcher;
-
 class Router implements RouterInterface
 {
     private string $httpMethod;
