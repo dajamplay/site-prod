@@ -23,11 +23,9 @@ class RouteMiddleware implements MiddlewareInterface
 
         $route = $dispatcher->dispatch($request->getMethod(), $request->getUri()->getPath());
         switch ($route[0]) {
-            case FastRoute\Dispatcher::NOT_FOUND:
-                return new Response('php://memory', 404);
-                break;
             case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-                return (new Response())->withStatus(404, 'SSS');
+            case FastRoute\Dispatcher::NOT_FOUND:
+                return (new Response())->withStatus(404, 'Not Found');
                 break;
             case FastRoute\Dispatcher::FOUND:
                 $routerHandler = $route[1];
