@@ -12,21 +12,18 @@ class Pipeline
     private ContainerInterface $container;
     private MiddlewarePipeline $pipeline;
 
-    public function __construct(ContainerInterface $container, string $pathToMiddlewareConfig)
+    public function __construct(ContainerInterface $container, array $middlewares)
     {
         $this->pipeline = new MiddlewarePipeline();
         $this->container = $container;
-        $this->loadMiddlewares($pathToMiddlewareConfig);
+        $this->loadMiddlewares($middlewares);
     }
 
-    public function loadMiddlewares($pathToMiddlewareConfig)
+    public function loadMiddlewares($middlewares)
     {
-        $middlewares = require $pathToMiddlewareConfig;
         foreach ($middlewares as $middleware)
         {
-            $this->pipeline->pipe(
-                $this->container->get($middleware[0]), $middleware[1] ?? null
-            );
+            $this->pipeline->pipe($this->container->get($middleware[0]), $middleware[1] ?? null);
         }
         $this->pipeline->pipe((new MiddlewareResolver)->resolve($this->container->get(ResponseHandler::class)));
     }

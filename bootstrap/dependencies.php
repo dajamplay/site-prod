@@ -24,7 +24,7 @@ $container->set(Router::class, factory(function (ContainerInterface $container) 
 }));
 
 $container->set(FastRouteDispatcher::class, factory(function () {
-    return new FastRouteDispatcher(__DIR__ . '/../routes/web.php');
+    return new FastRouteDispatcher(routes_path('web.php'));
 }));
 
 /** Auth middleware */

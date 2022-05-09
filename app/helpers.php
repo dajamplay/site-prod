@@ -47,6 +47,14 @@ if (!function_exists('storage_path'))
     }
 }
 
+if (!function_exists('bootstrap_path'))
+{
+    function bootstrap_path($path = ''): string
+    {
+        return base_path("bootstrap/{$path}");
+    }
+}
+
 if (!function_exists('resources_path'))
 {
     function resources_path($path = ''): string

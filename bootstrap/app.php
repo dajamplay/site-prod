@@ -6,9 +6,9 @@ use HttpSoft\Emitter\SapiEmitter;
 use Laminas\Diactoros\ServerRequestFactory as Request;
 
 /** @var Container $container */
-$container = require __DIR__ . '/dependencies.php';
+$container = require bootstrap_path('dependencies.php');
 
-$app = new Pipeline($container, __DIR__ . '/../config/middlewares.php');
+$app = new Pipeline($container, config('middlewares'));
 
 $emitter = new SapiEmitter();
 $emitter->emit($app->getPipeline()->handle(Request::fromGlobals()));
