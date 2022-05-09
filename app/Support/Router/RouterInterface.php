@@ -4,7 +4,5 @@ namespace App\Support\Router;
 
 interface RouterInterface
 {
-    public function withRoute(string $httpMethod, string $uri): self;
-    public function dispatch(): Route;
-    public function isFoundRoute(Route $route): bool;
+    public function dispatch(string $httpMethod, string $uri): Route|false;
 }

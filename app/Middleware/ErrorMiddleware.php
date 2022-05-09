@@ -7,10 +7,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class ResponseHandler implements RequestHandlerInterface
+class ErrorMiddleware implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return new Response();
+        $response = new Response();
+        return $response->withStatus(404);
     }
 }
