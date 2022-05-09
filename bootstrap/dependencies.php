@@ -3,7 +3,7 @@
 use App\Middleware\AuthMiddleware;
 use App\Middleware\ResponseHandler;
 use App\Middleware\RouteMiddleware;
-use App\Support\Blade\Blade;
+use App\Support\TemplateEngine\Blade;
 use App\Support\Router\FastRouteDispatcher;
 use App\Support\Router\Router;
 use DI\Container;

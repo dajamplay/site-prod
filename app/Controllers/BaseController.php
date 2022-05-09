@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Support\Blade\Blade;
+use App\Support\TemplateEngine\Blade;
+use App\Support\TemplateEngine\TemplateInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -23,9 +24,14 @@ abstract class BaseController
         $this->container = $container;
     }
 
-    public function render(string $template = '', array $data = []): ResponseInterface
+    public function render(string $template, array $data = []): ResponseInterface
     {
-        $blade = $this->container->get(Blade::class);
+        /**
+         * @var TemplateInterface $templateEngine
+         */
+        $templateEngine = $this->container->get(Blade::class);
+        $body = $templateEngine->setTemplate($template)->setData($data)->render();
+        $this->response->getBody()->write($body);
         return $this->response;
     }
 }

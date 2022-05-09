@@ -6,7 +6,7 @@ use HttpSoft\Emitter\SapiEmitter;
 use Laminas\Diactoros\ServerRequestFactory as Request;
 
 /** @var Container $container */
-$container = require __DIR__ . '/../config/dependencies.php';
+$container = require __DIR__ . '/dependencies.php';
 
 $app = new Pipeline($container, __DIR__ . '/../config/middlewares.php');
 

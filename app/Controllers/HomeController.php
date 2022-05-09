@@ -2,19 +2,17 @@
 
 namespace App\Controllers;
 
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ResponseInterface as Response;
 
 class HomeController extends BaseController
 {
-    public function index(): ResponseInterface
+    public function index(): Response
     {
-        $this->response->getBody()->write('<br />HomeController:index');
-        return $this->response;
+        return $this->render('main.home');
     }
 
-    public function admin(): ResponseInterface
+    public function admin(): Response
     {
-        $this->response->getBody()->write('<br />HomeController:admin');
-        return $this->response;
+        return $this->render('main.home');
     }
 }
