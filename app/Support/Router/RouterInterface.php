@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Router;
+namespace App\Support\Router;
 
 interface RouterInterface
 {

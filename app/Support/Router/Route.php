@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Services\Router;
+namespace App\Support\Router;
 
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -21,12 +22,12 @@ class Route
         $this->method = $route[1][1] ?? null;
     }
 
-    public function getResponseAction(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function getResponseAction(ServerRequestInterface $request, RequestHandlerInterface $handler, ContainerInterface $container): ResponseInterface
     {
         $parameters = $this->parameters;
         $class = $this->class;
         $method = $this->method;
-        return (new $class($request, $handler))->$method($parameters);
+        return (new $class($request, $handler, $container))->$method($parameters);
     }
 
     public function getStatus(): int

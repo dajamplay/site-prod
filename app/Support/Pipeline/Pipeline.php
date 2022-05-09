@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Pipeline;
+namespace App\Support\Pipeline;
 
 use App\Middleware\ResponseHandler;
 use HttpSoft\Runner\MiddlewarePipeline;
@@ -12,15 +12,16 @@ class Pipeline
     private ContainerInterface $container;
     private MiddlewarePipeline $pipeline;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container, string $pathToMiddlewareConfig)
     {
         $this->pipeline = new MiddlewarePipeline();
         $this->container = $container;
+        $this->loadMiddlewares($pathToMiddlewareConfig);
     }
 
-    public function loadMiddlewares()
+    public function loadMiddlewares($pathToMiddlewareConfig)
     {
-        $middlewares = require __DIR__ . '/../../../config/middlewares.php';
+        $middlewares = require $pathToMiddlewareConfig;
         foreach ($middlewares as $middleware)
         {
             $this->pipeline->pipe(

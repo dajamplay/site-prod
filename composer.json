@@ -18,7 +18,8 @@
         "laminas/laminas-diactoros": "^2.10",
         "nikic/fast-route": "^1.3",
         "php-di/php-di": "6.4.0",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "jenssegers/blade" : "v1.4.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"

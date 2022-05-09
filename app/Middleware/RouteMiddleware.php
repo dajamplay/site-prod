@@ -2,8 +2,9 @@
 
 namespace App\Middleware;
 
-use App\Services\Router\RouterInterface;
+use App\Support\Router\RouterInterface;
 use Laminas\Diactoros\Response;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -13,10 +14,12 @@ class RouteMiddleware implements MiddlewareInterface
 {
 
     private RouterInterface $router;
+    private ContainerInterface $container;
 
-    public function __construct(RouterInterface $router)
+    public function __construct(RouterInterface $router, ContainerInterface $container)
     {
         $this->router = $router;
+        $this->container = $container;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -29,7 +32,7 @@ class RouteMiddleware implements MiddlewareInterface
 
         if ($this->router->isFoundRoute($route))
         {
-            return $route->getResponseAction($request, $handler);
+            return $route->getResponseAction($request, $handler, $this->container);
         }
 
         return (new Response())->withStatus(404, 'Not Found');

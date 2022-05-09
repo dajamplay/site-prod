@@ -3,8 +3,9 @@
 use App\Middleware\AuthMiddleware;
 use App\Middleware\ResponseHandler;
 use App\Middleware\RouteMiddleware;
-use App\Services\Router\FastRouteDispatcher;
-use App\Services\Router\Router;
+use App\Support\Blade\Blade;
+use App\Support\Router\FastRouteDispatcher;
+use App\Support\Router\Router;
 use DI\Container;
 use Psr\Container\ContainerInterface;
 use function DI\create;
@@ -15,7 +16,7 @@ $container = new Container();
 /** Routing middleware*/
 
 $container->set(RouteMiddleware::class, factory(function (ContainerInterface $container) {
-    return new RouteMiddleware($container->get(Router::class));
+    return new RouteMiddleware($container->get(Router::class), $container);
 }));
 
 $container->set(Router::class, factory(function (ContainerInterface $container) {
@@ -36,5 +37,10 @@ $container->set(ResponseHandler::class, factory(function () {
     return new ResponseHandler();
 }));
 
+/** Blade */
+
+$container->set(Blade::class, factory(function () {
+    return new Blade();
+}));
 
 return $container;
