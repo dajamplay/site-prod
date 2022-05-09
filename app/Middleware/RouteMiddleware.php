@@ -4,6 +4,7 @@ namespace App\Middleware;
 
 use App\Support\Router\ActionResolver;
 use App\Support\Router\RouterInterface;
+use Laminas\Diactoros\Response\HtmlResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -32,6 +33,6 @@ class RouteMiddleware implements MiddlewareInterface
             return $this->resolver->resolve($request, $handler, $route);
         }
 
-        return $handler->handle($request);
+        return new HtmlResponse('Not Found 404', 404);
     }
 }

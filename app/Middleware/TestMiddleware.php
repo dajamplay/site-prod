@@ -8,11 +8,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class AuthMiddleware implements MiddlewareInterface
+class TestMiddleware implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        //return new Response\HtmlResponse('Access Denied', 403);
+        //return new Response\HtmlResponse('TestMiddleware', 200);
         return $handler->handle($request);
     }
 }

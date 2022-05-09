@@ -11,7 +11,6 @@ class ErrorMiddleware implements RequestHandlerInterface
 {
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $response = new Response();
-        return $response->withStatus(404);
+        return new Response\HtmlResponse('Error', 404);
     }
 }

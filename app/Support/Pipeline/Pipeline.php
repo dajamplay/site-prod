@@ -2,9 +2,7 @@
 
 namespace App\Support\Pipeline;
 
-use App\Middleware\ErrorMiddleware;
 use HttpSoft\Runner\MiddlewarePipeline;
-use HttpSoft\Runner\MiddlewareResolver;
 use Psr\Container\ContainerInterface;
 
 class Pipeline
@@ -25,7 +23,6 @@ class Pipeline
         {
             $this->pipeline->pipe($this->container->get($middleware[0]), $middleware[1] ?? null);
         }
-        $this->pipeline->pipe((new MiddlewareResolver)->resolve($this->container->get(ErrorMiddleware::class)));
     }
 
     public function getPipeline(): MiddlewarePipeline
