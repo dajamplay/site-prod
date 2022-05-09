@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Support\Pipeline;
+namespace App\Support\Runner;
 
 use HttpSoft\Runner\MiddlewarePipeline;
 use Psr\Container\ContainerInterface;
 
-class Pipeline
+class Runner
 {
     private ContainerInterface $container;
     private MiddlewarePipeline $pipeline;

@@ -8,17 +8,17 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-abstract class BaseController
+abstract class AbstractHomeController
 {
     public function __construct(
         protected ServerRequestInterface $request,
         protected RequestHandlerInterface $handler,
-        private TemplateInterface $blade)
+        private TemplateInterface $templateEngine)
     {
     }
 
     public function render(string $template, array $data = []): ResponseInterface
     {
-        return new HtmlResponse($this->blade->render($template, $data), 200);
+        return new HtmlResponse($this->templateEngine->render($template, $data), 200);
     }
 }

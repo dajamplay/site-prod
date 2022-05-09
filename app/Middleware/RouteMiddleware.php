@@ -13,26 +13,30 @@ use Psr\Http\Server\RequestHandlerInterface;
 class RouteMiddleware implements MiddlewareInterface
 {
 
-    private RouterInterface $router;
-    private ActionResolver $resolver;
+    public const ROUTE = '_route';
 
-    public function __construct(RouterInterface $router, ActionResolver $resolver)
+    private RouterInterface $router;
+
+    public function __construct(RouterInterface $router)
     {
         $this->router = $router;
-        $this->resolver = $resolver;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        /**
+         *  The variable $handler is empty if an entry
+         *  is not added to config/middlewares.php after this class
+         *  $handler($request) = Error
+         */
+
         $httpMethod = $request->getMethod();
-
         $uri = $request->getUri()->getPath();
-
         if ($route = $this->router->dispatch($httpMethod, $uri))
         {
-            return $this->resolver->resolve($request, $handler, $route);
+            $request = $request->withAttribute(self::ROUTE, $route);
+            return $handler->handle($request);
         }
-
         return new HtmlResponse('Not Found 404', 404);
     }
 }

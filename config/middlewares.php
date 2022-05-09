@@ -1,11 +1,11 @@
 <?php
 
+use App\Middleware\ActionResolveMiddleware;
 use App\Middleware\AuthMiddleware;
 use App\Middleware\RouteMiddleware;
-use App\Middleware\TestMiddleware;
 
 return [
+    [RouteMiddleware::class],
     [AuthMiddleware::class],
-    [TestMiddleware::class],
-    [RouteMiddleware::class]
+    [ActionResolveMiddleware::class]
 ];

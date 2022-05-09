@@ -1,5 +1,6 @@
 <?php
 
+use App\Middleware\ActionResolveMiddleware;
 use App\Middleware\AuthMiddleware;
 use App\Middleware\ErrorMiddleware;
 use App\Middleware\RouteMiddleware;
@@ -17,7 +18,7 @@ $container = new Container();
 /** Routing middleware*/
 
 $container->set(RouteMiddleware::class, factory(function (ContainerInterface $container) {
-    return new RouteMiddleware($container->get(Router::class), $container->get(ActionResolver::class));
+    return new RouteMiddleware($container->get(Router::class));
 }));
 
 $container->set(Router::class, factory(function (ContainerInterface $container) {
@@ -48,6 +49,10 @@ $container->set(Blade::class, factory(function () {
 
 $container->set(ActionResolver::class, factory(function (ContainerInterface $container) {
     return new ActionResolver($container->get(Blade::class));
+}));
+
+$container->set(ActionResolveMiddleware::class, factory(function (ContainerInterface $container) {
+    return new ActionResolveMiddleware($container->get(ActionResolver::class));
 }));
 
 return $container;

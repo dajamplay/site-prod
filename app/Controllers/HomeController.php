@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
 
-class HomeController extends BaseController
+class HomeController extends AbstractHomeController
 {
     public function index(): Response
     {
