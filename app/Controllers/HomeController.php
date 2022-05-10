@@ -8,7 +8,7 @@ class HomeController extends AbstractHomeController
 {
     public function index(): Response
     {
-        return $this->render('main.home');
+        return $this->render('main.home', ['name' => 'Maksim']);
     }
 
     public function admin(): Response

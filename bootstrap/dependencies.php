@@ -1,9 +1,7 @@
 <?php
 
-use App\Middleware\ActionResolveMiddleware;
-use App\Middleware\AuthMiddleware;
-use App\Middleware\ErrorMiddleware;
 use App\Middleware\RouteMiddleware;
+use App\Middleware\SenderControllerMiddleware;
 use App\Support\Router\ActionResolver;
 use App\Support\TemplateEngine\Blade;
 use App\Support\Router\FastRouteDispatcher;
@@ -21,29 +19,10 @@ $container->set(RouteMiddleware::class, factory(function (ContainerInterface $co
     return new RouteMiddleware($container->get(Router::class));
 }));
 
-$container->set(Router::class, factory(function (ContainerInterface $container) {
-    return new Router($container->get(FastRouteDispatcher::class));
-}));
-
 $container->set(FastRouteDispatcher::class, factory(function () {
     return new FastRouteDispatcher(routes_path('web.php'));
 }));
 
-/** Auth middleware */
-
-$container->set(AuthMiddleware::class, factory(function () {
-    return new AuthMiddleware();
-}));
-
-$container->set(ErrorMiddleware::class, factory(function () {
-    return new ErrorMiddleware();
-}));
-
-/** Blade */
-
-$container->set(Blade::class, factory(function () {
-    return new Blade();
-}));
 
 /** Action Resolver */
 
@@ -51,8 +30,10 @@ $container->set(ActionResolver::class, factory(function (ContainerInterface $con
     return new ActionResolver($container->get(Blade::class));
 }));
 
-$container->set(ActionResolveMiddleware::class, factory(function (ContainerInterface $container) {
-    return new ActionResolveMiddleware($container->get(ActionResolver::class));
+/** Sender Controller Middleware */
+
+$container->set(SenderControllerMiddleware::class, factory(function (ContainerInterface $container) {
+    return new SenderControllerMiddleware($container->get(Blade::class));
 }));
 
 return $container;

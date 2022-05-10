@@ -2,7 +2,6 @@
 
 namespace App\Middleware;
 
-use App\Support\Router\ActionResolver;
 use App\Support\Router\RouterInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Psr\Http\Message\ResponseInterface;

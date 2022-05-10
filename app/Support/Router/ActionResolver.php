@@ -21,6 +21,7 @@ class ActionResolver
         $class = $route->getClass();
         $method = $route->getMethod();
         $parameters = $route->getParameters();
+        //TODO create class with container
         return (new $class($request, $handler, $this->blade))->$method($parameters);
     }
 }
