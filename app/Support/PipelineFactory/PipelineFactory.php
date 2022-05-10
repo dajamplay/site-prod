@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Support\Runner;
+namespace App\Support\PipelineFactory;
 
 use HttpSoft\Runner\MiddlewarePipeline;
 use Psr\Container\ContainerInterface;
 
-class Runner
+class PipelineFactory
 {
     private ContainerInterface $container;
     private MiddlewarePipeline $pipeline;
@@ -25,7 +25,7 @@ class Runner
         }
     }
 
-    public function getPipeline(): MiddlewarePipeline
+    public function create(): MiddlewarePipeline
     {
         return $this->pipeline;
     }
