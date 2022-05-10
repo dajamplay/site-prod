@@ -1,15 +1,24 @@
 <?php
 
 use App\Support\Runner\Runner;
-use DI\Container;
+use DI\ContainerBuilder;
 use HttpSoft\Runner\ServerRequestRunner;
 use Laminas\Diactoros\ServerRequestFactory as Request;
 
-/** @var Container $container */
-$container = require bootstrap_path('dependencies.php');
+$containerBuilder = new ContainerBuilder();
+$containerBuilder->addDefinitions(config('dependencies'));
 
-$app = new Runner($container, config('middlewares'));
+try {
+    $container = $containerBuilder->build();
+    $pipeline = new Runner($container, config('middlewares'));
+    $runner = new ServerRequestRunner($pipeline->getPipeline());
+    $runner->run(Request::fromGlobals());
+} catch (Exception $e) {
+    //TODO add error
+}
 
-$runner = new ServerRequestRunner($app->getPipeline());
-$runner->run(Request::fromGlobals());
+
+
+
+
 
