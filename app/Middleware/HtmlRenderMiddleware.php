@@ -3,9 +3,7 @@
 
 namespace App\Middleware;
 
-use App\Support\Enum\RequestAttr;
 use App\Support\RequestAttributes\RequestAttrDTO;
-use App\Support\TemplateEngine\Blade;
 use App\Support\TemplateEngine\TemplateInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -29,6 +27,6 @@ class HtmlRenderMiddleware implements MiddlewareInterface
 
         $body = $this->blade->render($requestAttrDTO->template, $requestAttrDTO->data);
 
-        return new HtmlResponse($body, $requestAttrDTO->statusCode);
+        return new HtmlResponse($body, $requestAttrDTO->statusCode, $requestAttrDTO->headers);
     }
 }

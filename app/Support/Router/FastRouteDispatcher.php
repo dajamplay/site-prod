@@ -7,17 +7,15 @@ use FastRoute\Dispatcher;
 
 class FastRouteDispatcher implements Dispatcher
 {
-    private string $routesPath;
-
-    public function __construct(string $routesPath)
-    {
-        $this->routesPath = $routesPath;
-    }
-
     public function dispatch($httpMethod, $uri): array
     {
         $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $router) {
-            require_once $this->routesPath;
+
+            $routesFiles = glob(routes_path() . '/*.php');
+
+            foreach ($routesFiles as $routesFile) {
+                require_once $routesFile;
+            }
         });
 
         return $dispatcher->dispatch($httpMethod, $uri);

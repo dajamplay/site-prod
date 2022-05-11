@@ -8,4 +8,5 @@ class RequestAttrDTO
     public int $statusCode = 200;
     public array $data = [];
     public string $template = '';
+    public array $headers = [];
 }

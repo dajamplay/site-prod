@@ -14,5 +14,4 @@ return [
     RouterInterface::class => autowire(Router::class),
     TemplateInterface::class => autowire(Blade::class),
     ActionResolver::class => factory( fn (Container $c) => new ActionResolver($c)),
-    FastRouteDispatcher::class => factory( fn () => new FastRouteDispatcher(routes_path('web.php')))
 ];
