@@ -5,7 +5,7 @@ namespace App\Action;
 
 use App\Support\RequestAttributes\RequestAttrDTO;
 
-class BaseAction
+abstract class BaseAction
 {
     public function render(array $data = [], string $template = '', $statusCode = 200): RequestAttrDTO
     {

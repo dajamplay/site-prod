@@ -22,7 +22,6 @@ class ActionResolveMiddleware implements MiddlewareInterface
     {
         $route = $request->getAttribute(RouteMiddleware::ROUTE);
 
-        /** @var RequestAttrDTO $requestAttrDTO */
         $requestAttrDTO = $this->resolver->resolve($request, $route);
 
         return $handler->handle($request->withAttribute(RequestAttrDTO::REQUEST_ATTR, $requestAttrDTO));

@@ -18,6 +18,6 @@ class HomeIndexAction extends BaseAction
     {
         $user = new UserDTO();
 
-        return $this->render(['user' => $user], 'home.index', 404);
+        return $this->render(['user' => $user], 'home.index');
     }
 }
