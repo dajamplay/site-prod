@@ -2,6 +2,7 @@
 
 namespace App\Support\Router;
 
+use App\Support\RequestAttributes\RequestAttrDTO;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -14,11 +15,11 @@ class ActionResolver
         $this->container = $container;
     }
 
-    public function resolve(ServerRequestInterface $request, Route $route): array
+    public function resolve(ServerRequestInterface $request, Route $route): RequestAttrDTO
     {
         $class = $this->container->get($route->getClass());
         $method = $route->getMethod();
         $parameters = $route->getParameters();
-        return $class->$method($request, $parameters);
+        return $class->$method($request, ...$parameters);
     }
 }

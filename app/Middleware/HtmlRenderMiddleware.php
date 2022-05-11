@@ -3,9 +3,9 @@
 
 namespace App\Middleware;
 
-
+use App\Support\Enum\RequestAttr;
+use App\Support\RequestAttributes\RequestAttrDTO;
 use App\Support\TemplateEngine\Blade;
-use App\Support\TemplateEngine\ResponseEnum;
 use App\Support\TemplateEngine\TemplateInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -24,8 +24,11 @@ class HtmlRenderMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $data = $request->getAttribute(ResponseEnum::DATA);
-        $body = $this->blade->render($request->getAttribute(Blade::TEMPLATE), $data);
-        return new HtmlResponse($body, 200);
+        /** @var RequestAttrDTO $requestAttrDTO */
+        $requestAttrDTO = $request->getAttribute(RequestAttrDTO::REQUEST_ATTR);
+
+        $body = $this->blade->render($requestAttrDTO->template, $requestAttrDTO->data);
+
+        return new HtmlResponse($body, $requestAttrDTO->statusCode);
     }
 }

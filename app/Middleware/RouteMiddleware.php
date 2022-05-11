@@ -3,7 +3,7 @@
 namespace App\Middleware;
 
 use App\Support\Router\RouterInterface;
-use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -36,6 +36,6 @@ class RouteMiddleware implements MiddlewareInterface
             $request = $request->withAttribute(self::ROUTE, $route);
             return $handler->handle($request);
         }
-        return new HtmlResponse('Not Found 404', 404);
+        return new Response('Not Found 404', 404);
     }
 }

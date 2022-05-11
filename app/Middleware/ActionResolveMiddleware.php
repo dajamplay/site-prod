@@ -2,9 +2,8 @@
 
 namespace App\Middleware;
 
+use App\Support\RequestAttributes\RequestAttrDTO;
 use App\Support\Router\ActionResolver;
-use App\Support\TemplateEngine\Blade;
-use App\Support\TemplateEngine\ResponseEnum;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -22,9 +21,10 @@ class ActionResolveMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $route = $request->getAttribute(RouteMiddleware::ROUTE);
-        $dataFromAction = $this->resolver->resolve($request, $route);
-        $request = $request->withAttribute(ResponseEnum::DATA, $dataFromAction[ResponseEnum::DATA]);
-        $request = $request->withAttribute(Blade::TEMPLATE, $dataFromAction[Blade::TEMPLATE]);
-        return $handler->handle($request);
+
+        /** @var RequestAttrDTO $requestAttrDTO */
+        $requestAttrDTO = $this->resolver->resolve($request, $route);
+
+        return $handler->handle($request->withAttribute(RequestAttrDTO::REQUEST_ATTR, $requestAttrDTO));
     }
 }
