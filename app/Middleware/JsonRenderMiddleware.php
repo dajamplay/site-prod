@@ -17,6 +17,6 @@ class JsonRenderMiddleware implements MiddlewareInterface
         /** @var RequestAttrDTO $requestAttrDTO */
         $requestAttrDTO = $request->getAttribute(RequestAttrDTO::REQUEST_ATTR);
 
-        return new JsonResponse($requestAttrDTO->data, $requestAttrDTO->statusCode, $requestAttrDTO->headers, JSON_UNESCAPED_UNICODE);
+        return new JsonResponse($requestAttrDTO->dataForBody, $requestAttrDTO->statusCode, $requestAttrDTO->headers, JSON_UNESCAPED_UNICODE);
     }
 }

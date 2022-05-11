@@ -25,7 +25,7 @@ class HtmlRenderMiddleware implements MiddlewareInterface
         /** @var RequestAttrDTO $requestAttrDTO */
         $requestAttrDTO = $request->getAttribute(RequestAttrDTO::REQUEST_ATTR);
 
-        $body = $this->blade->render($requestAttrDTO->template, $requestAttrDTO->data);
+        $body = $this->blade->render($requestAttrDTO->template, $requestAttrDTO->dataForBody);
 
         return new HtmlResponse($body, $requestAttrDTO->statusCode, $requestAttrDTO->headers);
     }
