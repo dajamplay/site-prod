@@ -9,6 +9,9 @@
 </head>
 <body>
 <h1>App.blade.php</h1>
+@if (\App\Support\Session\Session::has('flash_message'))
+    <div class="alert alert-success">{{ \App\Support\Session\Session::get('flash_message') }}</div>
+@endif
 @yield('content')
 </body>
 </html>

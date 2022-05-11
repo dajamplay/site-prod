@@ -4,7 +4,9 @@
 namespace App\Middleware;
 
 use App\Support\RequestAttributes\RequestAttrDTO;
+use App\Support\Session\Session;
 use App\Support\TemplateEngine\TemplateInterface;
+use Laminas\Diactoros\Response\EmptyResponse;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -24,9 +26,12 @@ class HtmlRenderMiddleware implements MiddlewareInterface
     {
         /** @var RequestAttrDTO $requestAttrDTO */
         $requestAttrDTO = $request->getAttribute(RequestAttrDTO::REQUEST_ATTR);
-
-        $body = $this->blade->render($requestAttrDTO->template, $requestAttrDTO->dataForBody);
-
-        return new HtmlResponse($body, $requestAttrDTO->statusCode, $requestAttrDTO->headers);
+        if ($requestAttrDTO->template)
+        {
+            $body = $this->blade->render($requestAttrDTO->template, $requestAttrDTO->dataForBody);
+            return new HtmlResponse($body, $requestAttrDTO->statusCode, $requestAttrDTO->headers);
+        } else {
+            return new EmptyResponse($requestAttrDTO->statusCode, $requestAttrDTO->headers);
+        }
     }
 }

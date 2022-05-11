@@ -7,7 +7,7 @@ use App\Support\RequestAttributes\RequestAttrDTO;
 
 abstract class BaseAction
 {
-    public function render(array $dataForBody = [], string $template = '', $statusCode = 200, $headers = []): RequestAttrDTO
+    protected function render(array $dataForBody = [], string $template = null, $statusCode = 200, $headers = []): RequestAttrDTO
     {
         $requestAttrDTO = new RequestAttrDTO();
         $requestAttrDTO->dataForBody = $dataForBody;
@@ -15,5 +15,11 @@ abstract class BaseAction
         $requestAttrDTO->statusCode = $statusCode;
         $requestAttrDTO->headers = $headers;
         return $requestAttrDTO;
+    }
+
+    protected function redirect(string $url)
+    {
+        header('Location: '. $url);
+        return new RequestAttrDTO();
     }
 }

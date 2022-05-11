@@ -1,12 +1,18 @@
 <?php
 
 use App\Support\PipelineFactory\PipelineFactory;
+use App\Support\Session\Session;
 use DI\ContainerBuilder;
 use HttpSoft\Runner\ServerRequestRunner;
 use Laminas\Diactoros\ServerRequestFactory;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
+
+/**
+ * Session start
+ */
+Session::start();
 
 /**
  * PSR 7 Request
@@ -40,6 +46,7 @@ $pipeline = $pipelineFactory->create();
 $runner = new ServerRequestRunner($pipeline);
 $runner->run($request);
 
+Session::resetFlashMessage();
 
 
 

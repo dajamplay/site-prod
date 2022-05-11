@@ -2,6 +2,7 @@
 
 namespace App\Middleware;
 
+use App\Support\Router\Route;
 use App\Support\Router\RouterInterface;
 
 use Laminas\Diactoros\Response\EmptyResponse;
@@ -24,14 +25,10 @@ class RouteMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        /**
-         *  The variable $handler is empty if an entry
-         *  is not added to config/middlewares.php after this class
-         *  $handler($request) = Error
-         */
-
         $httpMethod = $request->getMethod();
         $uri = $request->getUri()->getPath();
+
+        /** @var Route $route */
         if ($route = $this->router->dispatch($httpMethod, $uri))
         {
             $request = $request->withAttribute(self::ROUTE, $route);

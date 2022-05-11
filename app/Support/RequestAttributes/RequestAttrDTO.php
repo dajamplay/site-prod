@@ -7,6 +7,6 @@ class RequestAttrDTO
     public const REQUEST_ATTR = '_request_attributes';
     public int $statusCode = 200;
     public array $dataForBody = [];
-    public string $template = '';
+    public mixed $template = null;
     public array $headers = [];
 }
