@@ -4,6 +4,8 @@ namespace App\Support\TemplateEngine;
 
 class Blade implements TemplateInterface
 {
+    public const TEMPLATE = '_blade_template_';
+
     public function render(string $template, array $data = []): string
     {
         $cache = config('blade.cache');

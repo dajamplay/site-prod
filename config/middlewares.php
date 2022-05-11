@@ -2,12 +2,14 @@
 
 use App\Middleware\ActionResolveMiddleware;
 use App\Middleware\AuthMiddleware;
+use App\Middleware\HtmlRenderMiddleware;
+use App\Middleware\JsonRenderMiddleware;
 use App\Middleware\RouteMiddleware;
-use App\Middleware\SenderControllerMiddleware;
 
 return [
     [RouteMiddleware::class],
     [AuthMiddleware::class],
     [ActionResolveMiddleware::class],
-    [SenderControllerMiddleware::class]
+    [JsonRenderMiddleware::class, '/api'],
+    [HtmlRenderMiddleware::class],
 ];

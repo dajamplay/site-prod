@@ -3,6 +3,8 @@
 namespace App\Middleware;
 
 use App\Support\Router\ActionResolver;
+use App\Support\TemplateEngine\Blade;
+use App\Support\TemplateEngine\ResponseEnum;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -20,6 +22,9 @@ class ActionResolveMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $route = $request->getAttribute(RouteMiddleware::ROUTE);
-        return $this->resolver->resolve($request, $handler, $route);
+        $dataFromAction = $this->resolver->resolve($request, $route);
+        $request = $request->withAttribute(ResponseEnum::DATA, $dataFromAction[ResponseEnum::DATA]);
+        $request = $request->withAttribute(Blade::TEMPLATE, $dataFromAction[Blade::TEMPLATE]);
+        return $handler->handle($request);
     }
 }

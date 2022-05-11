@@ -2,17 +2,28 @@
 
 namespace App\Controllers;
 
-use Psr\Http\Message\ResponseInterface as Response;
+use App\Services\TestService;
+use App\Support\TemplateEngine\ResponseEnum;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-class HomeController extends AbstractHomeController
+class HomeController
 {
-    public function index(): Response
+    public function __construct()
     {
-        return $this->render('main.home', ['name' => 'Maksim']);
+
     }
 
-    public function admin(): Response
+    public function index(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        return $this->render('main.home');
+        $request = $request->withAttribute(ResponseEnum::DATA, ['name' => 'Maksim']);
+        $request = $request->withAttribute(ResponseEnum::TEMPLATE, 'main.home');
+        return $handler->handle($request);
+    }
+
+    public function admin(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        return $handler->handle($request);
     }
 }

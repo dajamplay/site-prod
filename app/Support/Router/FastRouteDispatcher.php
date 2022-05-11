@@ -25,6 +25,6 @@ class FastRouteDispatcher implements Dispatcher
 
     public function isFoundRoute(Route $route): bool
     {
-        return $route->getStatus() === Dispatcher::FOUND;
+        return $route->getStatus() === Dispatcher::FOUND || $route->getStatus() === Dispatcher::METHOD_NOT_ALLOWED;
     }
 }

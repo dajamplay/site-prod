@@ -14,7 +14,7 @@ class Route
         $this->status = $route[0];
         $this->parameters = $route[2] ?? null;
         $this->class = $route[1][0] ?? null;
-        $this->method = $route[1][1] ?? null;
+        $this->method = $route[1][1] ?? '__invoke';
     }
 
     public function getStatus(): int
