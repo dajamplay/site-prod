@@ -20,6 +20,8 @@ class ShowCategoryAction extends BaseAction
 
         $category->id = $id;
 
-        return $this->render( 'category.show', ['category' => $category]);
+        return $this->render(
+            template: 'category.show',
+            data: ['category' => $category]);
     }
 }

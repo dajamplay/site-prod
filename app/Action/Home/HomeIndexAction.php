@@ -16,9 +16,10 @@ class HomeIndexAction extends BaseAction
 
     public function __invoke(Request $request, $id = null): ResponseDTO
     {
-
         $user = new UserDTO();
 
-        return $this->render(template: 'home.index', data: ['user' => $user]);
+        return $this->render(
+            template: 'home.index',
+            data: ['user' => $user]);
     }
 }
