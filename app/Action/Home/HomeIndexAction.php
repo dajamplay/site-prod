@@ -4,8 +4,7 @@ namespace App\Action\Home;
 
 use App\Action\BaseAction;
 use App\Models\User\UserDTO;
-use App\Support\RequestAttributes\RequestAttr;
-use App\Support\Session\Session;
+use App\Support\ResponseDTO\ResponseDTO;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class HomeIndexAction extends BaseAction
@@ -15,10 +14,10 @@ class HomeIndexAction extends BaseAction
     {
     }
 
-    public function __invoke(Request $request, $id = null): RequestAttr
+    public function __invoke(Request $request, $id = null): ResponseDTO
     {
         $user = new UserDTO();
 
-        return $this->redirect('/category/25');
+        return $this->render('home.index', ['user' => $user]);
     }
 }

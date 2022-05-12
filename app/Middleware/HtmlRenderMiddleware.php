@@ -3,7 +3,7 @@
 
 namespace App\Middleware;
 
-use App\Support\RequestAttributes\RequestAttr;
+use App\Support\ResponseDTO\ResponseDTO;
 use App\Support\TemplateEngine\TemplateInterface;
 use Laminas\Diactoros\Response\EmptyResponse;
 use Laminas\Diactoros\Response\HtmlResponse;
@@ -24,10 +24,10 @@ class HtmlRenderMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         /**
-         * @var RequestAttr $requestAttrActionData
+         * @var ResponseDTO $requestAttrActionData
          * @var string $body
          */
-        $requestAttrActionData = $request->getAttribute(RequestAttr::ACTION_DATA);
+        $requestAttrActionData = $request->getAttribute(ResponseDTO::class);
 
         switch ($requestAttrActionData->statusCode) {
             case 200:

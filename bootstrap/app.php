@@ -1,6 +1,7 @@
 <?php
 
 use App\Support\PipelineFactory\PipelineFactory;
+use App\Support\ResponseDTO\ResponseDTO;
 use App\Support\Session\Session;
 use DI\ContainerBuilder;
 use HttpSoft\Runner\ServerRequestRunner;
@@ -47,7 +48,7 @@ $runner = new ServerRequestRunner($pipeline);
 $runner->run($request);
 
 /**
- * Clear session flash message
+ * Reset session flash message
  */
 Session::resetFlashMessage();
 

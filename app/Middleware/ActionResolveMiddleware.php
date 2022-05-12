@@ -2,7 +2,7 @@
 
 namespace App\Middleware;
 
-use App\Support\RequestAttributes\RequestAttr;
+use App\Support\ResponseDTO\ResponseDTO;
 use App\Support\Router\ActionResolver;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -24,6 +24,6 @@ class ActionResolveMiddleware implements MiddlewareInterface
 
         $requestAttrActionData = $this->resolver->resolve($request, $route);
 
-        return $handler->handle($request->withAttribute(RequestAttr::ACTION_DATA, $requestAttrActionData));
+        return $handler->handle($request->withAttribute(ResponseDTO::class, $requestAttrActionData));
     }
 }

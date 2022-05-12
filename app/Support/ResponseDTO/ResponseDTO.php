@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Support\RequestAttributes;
+namespace App\Support\ResponseDTO;
 
-class RequestAttr
+class ResponseDTO
 {
-    public const ACTION_DATA = '_request_attributes';
-
     public function __construct(public string $template = '',
                                 public array $dataForBody = [],
                                 public int $statusCode = 200,

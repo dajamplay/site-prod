@@ -3,7 +3,7 @@
 
 namespace App\Middleware;
 
-use App\Support\RequestAttributes\RequestAttr;
+use App\Support\RequestAttributes\ResponseDTO;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,8 +14,8 @@ class JsonRenderMiddleware implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        /** @var RequestAttr $requestAttrActionData */
-        $requestAttrActionData = $request->getAttribute(RequestAttr::ACTION_DATA);
+        /** @var ResponseDTO $requestAttrActionData */
+        $requestAttrActionData = $request->getAttribute(ResponseDTO::ACTION_DATA);
         return new JsonResponse($requestAttrActionData->dataForBody, $requestAttrActionData->statusCode, $requestAttrActionData->headers, JSON_UNESCAPED_UNICODE);
     }
 }

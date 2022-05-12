@@ -2,7 +2,7 @@
 
 namespace App\Support\Router;
 
-use App\Support\RequestAttributes\RequestAttr;
+use App\Support\ResponseDTO\ResponseDTO;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -15,7 +15,7 @@ class ActionResolver
         $this->container = $container;
     }
 
-    public function resolve(ServerRequestInterface $request, Route $route): RequestAttr
+    public function resolve(ServerRequestInterface $request, Route $route): ResponseDTO
     {
         $class = $this->container->get($route->getClass());
         $method = $route->getMethod();
