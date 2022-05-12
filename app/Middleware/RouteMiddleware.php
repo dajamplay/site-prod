@@ -34,6 +34,6 @@ class RouteMiddleware implements MiddlewareInterface
             $request = $request->withAttribute(self::ROUTE, $route);
             return $handler->handle($request);
         }
-        return new EmptyResponse( 404);
+        return new EmptyResponse(404);
     }
 }

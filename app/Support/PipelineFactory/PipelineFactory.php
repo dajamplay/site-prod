@@ -17,7 +17,7 @@ class PipelineFactory
         $this->loadMiddlewares($middlewares);
     }
 
-    public function loadMiddlewares($middlewares)
+    private function loadMiddlewares($middlewares)
     {
         foreach ($middlewares as $middleware)
         {
