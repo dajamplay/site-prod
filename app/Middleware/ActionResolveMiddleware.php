@@ -22,8 +22,8 @@ class ActionResolveMiddleware implements MiddlewareInterface
     {
         $route = $request->getAttribute(RouteMiddleware::ROUTE);
 
-        $requestAttrActionData = $this->resolver->resolve($request, $route);
+        $responseDTO = $this->resolver->resolve($request, $route);
 
-        return $handler->handle($request->withAttribute(ResponseDTO::class, $requestAttrActionData));
+        return $handler->handle($request->withAttribute(ResponseDTO::class, $responseDTO));
     }
 }

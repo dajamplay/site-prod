@@ -17,7 +17,9 @@ class ShowCategoryAction extends BaseAction
     public function __invoke(ServerRequestInterface $request, $id): ResponseDTO
     {
         $category = new CategoryDTO();
+
         $category->id = $id;
+
         return $this->render( 'category.show', ['category' => $category]);
     }
 }

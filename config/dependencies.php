@@ -1,7 +1,6 @@
 <?php
 
 use App\Support\Router\ActionResolver;
-use App\Support\Router\FastRouteDispatcher;
 use App\Support\Router\Router;
 use App\Support\Router\RouterInterface;
 use App\Support\TemplateEngine\Blade;

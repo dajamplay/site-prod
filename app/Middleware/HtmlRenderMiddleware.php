@@ -27,14 +27,14 @@ class HtmlRenderMiddleware implements MiddlewareInterface
          * @var ResponseDTO $requestAttrActionData
          * @var string $body
          */
-        $requestAttrActionData = $request->getAttribute(ResponseDTO::class);
+        $responseDTO = $request->getAttribute(ResponseDTO::class);
 
-        switch ($requestAttrActionData->statusCode) {
+        switch ($responseDTO->statusCode) {
             case 200:
-                $body = $this->templateEngine->render($requestAttrActionData->template, $requestAttrActionData->dataForBody);
-                return new HtmlResponse($body, $requestAttrActionData->statusCode, $requestAttrActionData->headers);
+                $body = $this->templateEngine->render($responseDTO->template, $responseDTO->dataForBody);
+                return new HtmlResponse($body, $responseDTO->statusCode, $responseDTO->headers);
             default:
-                return new EmptyResponse($requestAttrActionData->statusCode, $requestAttrActionData->headers);
+                return new EmptyResponse($responseDTO->statusCode, $responseDTO->headers);
         }
     }
 }
