@@ -18,8 +18,8 @@ class JsonRenderMiddleware implements MiddlewareInterface
         $responseDTO = $request->getAttribute(ResponseDTO::class);
 
         return new JsonResponse(
-            data: $responseDTO->dataForBody,
-            status: $responseDTO->statusCode,
+            data: $responseDTO->data,
+            status: $responseDTO->status,
             headers: $responseDTO->headers,
             encodingOptions: JSON_UNESCAPED_UNICODE);
     }

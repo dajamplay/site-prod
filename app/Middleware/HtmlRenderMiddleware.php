@@ -24,17 +24,17 @@ class HtmlRenderMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         /**
-         * @var ResponseDTO $requestAttrActionData
+         * @var ResponseDTO $responseDTO
          * @var string $body
          */
         $responseDTO = $request->getAttribute(ResponseDTO::class);
 
-        switch ($responseDTO->statusCode) {
+        switch ($responseDTO->status) {
             case 200:
-                $body = $this->templateEngine->render($responseDTO->template, $responseDTO->dataForBody);
-                return new HtmlResponse($body, $responseDTO->statusCode, $responseDTO->headers);
+                $body = $this->templateEngine->render($responseDTO->template, $responseDTO->data);
+                return new HtmlResponse($body, $responseDTO->status, $responseDTO->headers);
             default:
-                return new EmptyResponse($responseDTO->statusCode, $responseDTO->headers);
+                return new EmptyResponse($responseDTO->status, $responseDTO->headers);
         }
     }
 }
