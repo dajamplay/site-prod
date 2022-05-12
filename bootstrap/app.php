@@ -35,7 +35,7 @@ $container = $containerBuilder->build();
 $middlewares = config('middlewares');
 
 /**
- * Pipeline: PSR 11 Container + PSR 15 Middlewares[] + PSR 7 Request, response
+ * Pipeline: PSR 11 Container + PSR 15 Middlewares[]
  */
 $pipelineFactory = new PipelineFactory($container, $middlewares);
 $pipeline = $pipelineFactory->create();
@@ -46,6 +46,9 @@ $pipeline = $pipelineFactory->create();
 $runner = new ServerRequestRunner($pipeline);
 $runner->run($request);
 
+/**
+ * Clear session flash message
+ */
 Session::resetFlashMessage();
 
 

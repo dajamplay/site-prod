@@ -3,8 +3,7 @@
 
 namespace App\Middleware;
 
-use App\Support\RequestAttributes\RequestAttrDTO;
-use App\Support\Session\Session;
+use App\Support\RequestAttributes\RequestAttr;
 use App\Support\TemplateEngine\TemplateInterface;
 use Laminas\Diactoros\Response\EmptyResponse;
 use Laminas\Diactoros\Response\HtmlResponse;
@@ -15,23 +14,27 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class HtmlRenderMiddleware implements MiddlewareInterface
 {
-    private TemplateInterface $blade;
+    private TemplateInterface $templateEngine;
 
-    public function __construct(TemplateInterface $blade)
+    public function __construct(TemplateInterface $templateEngine)
     {
-        $this->blade = $blade;
+        $this->templateEngine = $templateEngine;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        /** @var RequestAttrDTO $requestAttrDTO */
-        $requestAttrDTO = $request->getAttribute(RequestAttrDTO::REQUEST_ATTR);
-        if ($requestAttrDTO->template)
-        {
-            $body = $this->blade->render($requestAttrDTO->template, $requestAttrDTO->dataForBody);
-            return new HtmlResponse($body, $requestAttrDTO->statusCode, $requestAttrDTO->headers);
-        } else {
-            return new EmptyResponse($requestAttrDTO->statusCode, $requestAttrDTO->headers);
+        /**
+         * @var RequestAttr $requestAttrActionData
+         * @var string $body
+         */
+        $requestAttrActionData = $request->getAttribute(RequestAttr::ACTION_DATA);
+
+        switch ($requestAttrActionData->statusCode) {
+            case 200:
+                $body = $this->templateEngine->render($requestAttrActionData->template, $requestAttrActionData->dataForBody);
+                return new HtmlResponse($body, $requestAttrActionData->statusCode, $requestAttrActionData->headers);
+            default:
+                return new EmptyResponse($requestAttrActionData->statusCode, $requestAttrActionData->headers);
         }
     }
 }

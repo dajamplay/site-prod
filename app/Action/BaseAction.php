@@ -3,23 +3,18 @@
 
 namespace App\Action;
 
-use App\Support\RequestAttributes\RequestAttrDTO;
+use App\Support\RequestAttributes\RequestAttr;
 
 abstract class BaseAction
 {
-    protected function render(array $dataForBody = [], string $template = null, $statusCode = 200, $headers = []): RequestAttrDTO
+    protected function render(string $template, array $dataForBody = [],  $headers = []): RequestAttr
     {
-        $requestAttrDTO = new RequestAttrDTO();
-        $requestAttrDTO->dataForBody = $dataForBody;
-        $requestAttrDTO->template = $template;
-        $requestAttrDTO->statusCode = $statusCode;
-        $requestAttrDTO->headers = $headers;
-        return $requestAttrDTO;
+        return new RequestAttr($template, $dataForBody, 200, $headers);
     }
 
-    protected function redirect(string $url)
+    protected function redirect(string $url, int $statusCode = 302, $headers = [])
     {
-        header('Location: '. $url);
-        return new RequestAttrDTO();
+        $headers['Location'] = $url;
+        return new RequestAttr('', [], $statusCode, $headers);
     }
 }
