@@ -1,7 +1,6 @@
 <?php
 
 use App\Support\PipelineFactory\PipelineFactory;
-use App\Support\ResponseDTO\ResponseDTO;
 use App\Support\Session\Session;
 use DI\ContainerBuilder;
 use HttpSoft\Runner\ServerRequestRunner;

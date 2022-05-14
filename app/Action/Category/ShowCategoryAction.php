@@ -4,17 +4,11 @@ namespace App\Action\Category;
 
 use App\Action\BaseAction;
 use App\Models\Category\CategoryDTO;
-use App\Support\ResponseDTO\ResponseDTO;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 class ShowCategoryAction extends BaseAction
 {
-    public function __construct()
-    {
-
-    }
-
-    public function __invoke(ServerRequestInterface $request, $id): ResponseDTO
+    public function __invoke($id): ResponseInterface
     {
         $category = new CategoryDTO();
 

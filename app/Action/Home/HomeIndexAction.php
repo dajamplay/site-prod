@@ -4,17 +4,12 @@ namespace App\Action\Home;
 
 use App\Action\BaseAction;
 use App\Models\User\UserDTO;
-use App\Support\ResponseDTO\ResponseDTO;
-use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface;
 
 class HomeIndexAction extends BaseAction
 {
 
-    public function __construct()
-    {
-    }
-
-    public function __invoke(Request $request, $id = null): ResponseDTO
+    public function __invoke(): ResponseInterface
     {
         $user = new UserDTO();
 
