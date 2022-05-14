@@ -25,7 +25,7 @@ abstract class BaseAction
         return $this->handler->handle($this->request);
     }
 
-    protected function redirect(string $url, int $status = 302, $headers = [])
+    protected function redirect(string $url, int $status = 302, $headers = []): ResponseInterface
     {
         $headers['Location'] = $url;
         $this->request = $this->request->withAttribute(ResponseDTO::class, new ResponseDTO('', [], $status, $headers));

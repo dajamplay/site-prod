@@ -26,10 +26,12 @@ class ActionHandler
 
         $actionClassName = $route->getClassName();
 
+        /** Action __construct with request and next middleware*/
         $instantAction = $this->container->make($actionClassName, ['request' => $request , 'handler' => $handler]);
 
         $parameters = $route->getParameters();
 
+        /** Action __invoke with parameters */
         return $this->container->call($instantAction, $parameters);
     }
 }
