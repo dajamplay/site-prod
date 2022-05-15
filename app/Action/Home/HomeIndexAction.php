@@ -3,18 +3,14 @@
 namespace App\Action\Home;
 
 use App\Action\BaseAction;
-use App\Models\User\UserDTO;
+use App\Models\User\User;
 use Psr\Http\Message\ResponseInterface;
 
 class HomeIndexAction extends BaseAction
 {
-
     public function __invoke(): ResponseInterface
     {
-        $user = new UserDTO();
-
-        return $this->render(
-            template: 'home.index',
-            data: ['user' => $user]);
+        $user = User::all()->first();
+        return $this->render('home.index', ['user' => $user]);
     }
 }

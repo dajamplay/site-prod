@@ -1,5 +1,6 @@
 <?php
 
+use App\Support\Database\BootEloquent;
 use App\Support\PipelineFactory\PipelineFactory;
 use App\Support\Session\Session;
 use DI\ContainerBuilder;
@@ -13,6 +14,11 @@ use Psr\Http\Server\MiddlewareInterface;
  * Session start
  */
 Session::start();
+
+/**
+ * Boot Eloquent with config
+ */
+BootEloquent::boot(config('database'));
 
 /**
  * PSR 7 Request
