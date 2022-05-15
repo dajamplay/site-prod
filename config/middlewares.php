@@ -8,7 +8,7 @@ use App\Middleware\RouteMiddleware;
 
 return [
     [RouteMiddleware::class],
-    [AuthMiddleware::class],
+    [AuthMiddleware::class, '/admin'],
     [ActionHandlerMiddleware::class],
     [JsonRenderMiddleware::class, '/api'],
     [HtmlRenderMiddleware::class],

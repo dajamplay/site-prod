@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Action\Category;
+namespace App\Http\Actions\Public\Category;
 
-use App\Action\BaseAction;
+use App\Http\Actions\BaseAction;
 use App\Models\Category\CategoryDTO;
 use Psr\Http\Message\ResponseInterface;
 

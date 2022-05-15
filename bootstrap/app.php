@@ -16,7 +16,7 @@ use Psr\Http\Server\MiddlewareInterface;
 Session::start();
 
 /**
- * Boot Eloquent with config
+ * Boot Eloquent
  */
 BootEloquent::boot(config('database'));
 

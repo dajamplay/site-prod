@@ -12,8 +12,12 @@ class AuthMiddleware implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        //return new EmptyResponse(301, ['location' => '/']);
+        $role = $_SESSION['auth'] ?? null;
 
-        return $handler->handle($request);
+        if ($role === 'admin')
+        {
+            return $handler->handle($request);
+        }
+        return new EmptyResponse(403);
     }
 }

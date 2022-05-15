@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Models\User;
+namespace App\Http\Models\User;
 
 
 class UserDTO
