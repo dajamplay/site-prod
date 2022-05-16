@@ -10,7 +10,7 @@ class HomeAction extends BaseAction
 {
     public function __invoke(): ResponseInterface
     {
-        $user = User::all()->first();
+        $user = User::first();
         return $this->render('public.home.index', ['user' => $user]);
     }
 }

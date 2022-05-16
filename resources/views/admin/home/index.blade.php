@@ -1,5 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <h2>Admin panel</h2>
+    <h2>Главная страница</h2>
 @endsection
