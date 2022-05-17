@@ -8,6 +8,5 @@ class RouterTest extends TestCase
 {
     public function testFoundRoute()
     {
-
     }
 }
