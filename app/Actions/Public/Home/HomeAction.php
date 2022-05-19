@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Actions\Public\Home;
+namespace App\Actions\Public\Home;
 
-use App\Http\Actions\BaseAction;
-use App\Http\Models\User\User;
+use App\Actions\BaseAction;
+use App\Models\User\User;
 use Psr\Http\Message\ResponseInterface;
 
 class HomeAction extends BaseAction

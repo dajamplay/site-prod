@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Actions\Admin\Auth;
+namespace App\Actions\Admin\Auth;
 
-use App\Http\Actions\BaseAction;
+use App\Actions\BaseAction;
 
 use Psr\Http\Message\ResponseInterface;
 

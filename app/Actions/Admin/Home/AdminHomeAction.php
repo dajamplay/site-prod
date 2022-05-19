@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Actions\Admin\Home;
+namespace App\Actions\Admin\Home;
 
-use App\Http\Actions\BaseAction;
+use App\Actions\BaseAction;
 
-use App\Http\Models\User\User;
+use App\Models\User\User;
 use Psr\Http\Message\ResponseInterface;
 
 class AdminHomeAction extends BaseAction

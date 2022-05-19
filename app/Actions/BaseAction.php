@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Actions;
+namespace App\Actions;
 
 use App\Support\ResponseDTO\ResponseDTO;
 use Psr\Http\Message\ResponseInterface;
