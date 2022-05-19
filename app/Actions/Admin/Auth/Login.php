@@ -2,11 +2,11 @@
 
 namespace App\Actions\Admin\Auth;
 
-use App\Actions\BaseAction;
+use App\Actions\Action;
 
 use Psr\Http\Message\ResponseInterface;
 
-class AdminLoginAction extends BaseAction
+class Login extends Action
 {
     public function __invoke(): ResponseInterface
     {

@@ -4,5 +4,5 @@
  * Routing
  * @var FastRoute\RouteCollector $router
  */
-$router->get('/api/home', [\App\Action\Home\HomeIndexAction::class]);
-$router->get('/api/category/{id:\d+}', [\App\Action\Category\ShowCategoryAction::class]);
+$router->get('/api/home', [\App\Actions\Public\Home\Home::class]);
+$router->get('/api/category/{id:\d+}', [\App\Actions\Public\Category\ShowCategory::class]);

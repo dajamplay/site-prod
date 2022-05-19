@@ -2,12 +2,12 @@
 
 namespace App\Actions\Admin\Home;
 
-use App\Actions\BaseAction;
+use App\Actions\Action;
 
 use App\Models\User\User;
 use Psr\Http\Message\ResponseInterface;
 
-class AdminHomeAction extends BaseAction
+class Home extends Action
 {
     public function __invoke(): ResponseInterface
     {

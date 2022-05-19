@@ -8,11 +8,11 @@
 /**
  * Public user
  */
-$router->get('/', [\App\Actions\Public\Home\HomeAction::class]);
-$router->get('/category/{id:\d+}', [\App\Actions\Public\Category\ShowCategoryAction::class]);
+$router->get('/', [\App\Actions\Public\Home\Home::class]);
+$router->get('/category/{id:\d+}', [\App\Actions\Public\Category\ShowCategory::class]);
 
 /**
  * Administrator
  */
-$router->get('/admin/home', [\App\Actions\Admin\Home\AdminHomeAction::class]);
-$router->get('/admin-login', [\App\Actions\Admin\Auth\AdminLoginAction::class]);
+$router->get('/admin/home', [\App\Actions\Admin\Home\Home::class]);
+$router->get('/admin-login', [\App\Actions\Admin\Auth\Login::class]);

@@ -2,10 +2,10 @@
 
 namespace App\Actions\Public\Category;
 
-use App\Actions\BaseAction;
+use App\Actions\Action;
 use Psr\Http\Message\ResponseInterface;
 
-class ShowCategoryAction extends BaseAction
+class ShowCategory extends Action
 {
     public function __invoke($id): ResponseInterface
     {
