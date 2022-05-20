@@ -10,35 +10,35 @@
   // });
 
 
-  window.addEventListener('scroll', function() {
-    let elem = document.querySelector('.hero-1');
-    if (elem.getBoundingClientRect().top <= 0)
-    {
-      elem.style.backgroundAttachment = 'fixed';
-    }else {
-      elem.style.backgroundAttachment = 'scroll';
-    }
-  });
-
-  window.addEventListener('scroll', function() {
-    let elem = document.querySelector('.hero-2');
-    if (elem.getBoundingClientRect().top <= 0)
-    {
-      elem.style.backgroundAttachment = 'fixed';
-    } else {
-      elem.style.backgroundAttachment = 'scroll';
-    }
-  });
-
-  window.addEventListener('scroll', function() {
-    let elem = document.querySelector('.hero-3');
-    if (elem.getBoundingClientRect().top <= 0)
-    {
-      elem.style.backgroundAttachment = 'fixed';
-    }else {
-      elem.style.backgroundAttachment = 'scroll';
-    }
-  });
+  // window.addEventListener('scroll', function() {
+  //   let elem = document.querySelector('.home-section-1');
+  //   if (elem.getBoundingClientRect().top <= 0)
+  //   {
+  //     elem.style.backgroundAttachment = 'fixed';
+  //   }else {
+  //     elem.style.backgroundAttachment = 'scroll';
+  //   }
+  // });
+  //
+  // window.addEventListener('scroll', function() {
+  //   let elem = document.querySelector('.home-section-2');
+  //   if (elem.getBoundingClientRect().top <= 0)
+  //   {
+  //     elem.style.backgroundAttachment = 'fixed';
+  //   } else {
+  //     elem.style.backgroundAttachment = 'scroll';
+  //   }
+  // });
+  //
+  // window.addEventListener('scroll', function() {
+  //   let elem = document.querySelector('.home-section-3');
+  //   if (elem.getBoundingClientRect().top <= 0)
+  //   {
+  //     elem.style.backgroundAttachment = 'fixed';
+  //   }else {
+  //     elem.style.backgroundAttachment = 'scroll';
+  //   }
+  // });
 
 
 

@@ -6,8 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/aos.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 {{--    <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">--}}
 {{--    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">--}}
@@ -20,46 +20,41 @@
 
 <header id="header" class="fixed-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-
-        <h1 class="logo me-auto me-lg-0"><a href="#">Елеанта</a></h1>
+        <span class="logo me-auto me-lg-0"><a href="/">Елеанта</a></span>
 {{--        <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>--}}
-
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li><a class="active" href="#">Главная</a></li>
+                <li><a class="active" href="/">Главная</a></li>
                 <li><a href="/category/2">О компании</a></li>
                 <li><a href="#">Продукция</a></li>
                 <li><a href="#">Доставка и оплата</a></li>
                 <li><a href="#">Контакты</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-
+        </nav>
         <div class="header-social-links">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
             <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
-
     </div>
-
 </header>
 
-<section id="" class="hero hero-1 d-flex align-items-center">
+<section id="" class="home-section home-section-1 d-flex align-items-center">
     <div class="container d-flex flex-column align-items-center" data-aos="zoom-in">
         <h1 style="color: #34b7a7; text-shadow: 1px 1px 1px #fff;">Профессиональная косметика</h1>
         <a href="#" class="btn-about">Подробнее</a>
     </div>
 </section>
 
-<section id="" class="hero hero-2 d-flex align-items-center">
+<section id="" class="home-section home-section-2 d-flex align-items-center">
     <div class="container d-flex flex-column align-items-center" data-aos="zoom-in">
         @yield('content')
     </div>
 </section>
 
-<section id="" class="hero hero-3 d-flex align-items-center">
+<section id="" class="home-section home-section-3 d-flex align-items-center">
     <div class="container d-flex flex-column align-items-center" data-aos="zoom-in">
         @yield('content')
     </div>
